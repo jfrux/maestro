@@ -6,74 +6,73 @@ Maestro is a set of patterns and tools that fulfil the following goals:
  - Greatly reduce boilerplate
  - Increase testability
  - Make roku development safer, more fun, and easier to maintain
- - Allow for MVVM development, which is well suited for scenegraph applications
- - Allow for development using [brighterscript](https://github.com/TwitchBronBron/brighterscript/)
+ - Allow for MVVM development, which is well suited for SceneGraph applications
+ - Allow for development using [BrighterScript](https://github.com/TwitchBronBron/BrighterScript/)
  - Be opinionated
- - Produce projects which are highly navigable in a modern brighscript-enabled IDE
+ - Produce projects which are highly navigable in a modern BrightScript-enabled IDE
 
-# What does Maestro comprise of
+## What does Maestro comprise of
 
- - [Maestro-cli Command Line Tool](#Maestro-cli-Command-Line-tool)
- - [View framework](#View-framework)
- - [MVVM and observable base classes](#MVVM-and-observable-base-classes)
+ - [Command Line Tool](##Maestro-Command-Line-Tool)
+ - [View Framework](##view-framework)
+ - [MVVM and Observable Base Classes](#MVVM-and-observable-base-classes)
  - [XML bindings](#XML-bindings)
- - [Brighterscript support](#Brighterscript-support)
+ - [BrighterScript support](#BrighterScript-support)
  - IOC framework - Coming soon!
 
+## How much of Maestro do I need to use?
 
-# How much of maestro do I need to use?
+There is a lot to Maestro. You are welcome to use as much or as little as you like. 
 
-There is a lot to maestro. You are welcome to use as much or as little as you like. 
-
- - If you want you can just use it as a temporary britherscript compiler, while Bronley plumb is busy perfecting the officila brighterscript compiler.
-   - you don't have to use all of brighterscript - you can just use the imports, or the classes, or namespace features
+ - If you want you can just use it as a temporary BrighterScript compiler, while Bronley Plumb is busy perfecting the official BrighterScript compiler.
+   - you don't have to use all of BrighterScript - you can just use the imports, or the classes, or namespace features
   - you can just use the view framework
   - or just use the xml bindings
   - or only the IOC framework
 
-# Getting started with maestro
+## Getting started with Maestro
 
 TBD - in a nutshell, you'll use the maestro-cli to download and install the framework's source into your project
 
-# Maestro is an opinionated framework
+## Maestro is an opinionated framework
 
-Brightscript looks like javacript; but is *extremely* different. It does not have scope binding, for starters, and also has a bizarre virtual-machine like divisoin between threads and nodes, which introduces it's own special set of problems, that can uttlery confuse and confound brightscript developer's intending to engineer quality software, adhering to software engineering best practices.
+BrightScript looks like JavaScript but is *extremely* different. It does not have scope binding and also has a bizarre virtual-machine like division between threads and nodes, which introduces it's own special set of problems. This can confuse BrightScript developer's intending to engineer quality software, adhering to software engineering best practices.
 
-The framework is my refinement of several projects, which were based on a decade of similar patterns I used on Adobe Flex and Xamarin SDK's. The patterns here have been thoroughly tested, and I solve many of the problems roku developers face, while adhering to brightscript and scenegraph idioms.
+The patterns here have been thoroughly tested and solve many of the problems Roku developers face, while taking into account the quirks of BrightScript and SceneGraph.
 
-I've found it desirable where possible to:
+We've found it desirable where possible to:
 
- - use pobo-classes (plain old brightscript classes, i.e. aa-classes)
- - have mixin wrappers around callfunc methods wherever possible
+ - use pobo-classes (plain old BrightScript classes, i.e. aa-classes)
+ - have mixin wrappers around callFunc methods wherever possible
  - have as little code in brs code-behind files (i.e. the brs files directly related to an xml view) as possible
  - place more code in easy to test-view model classes
 
-# Maestro produces brightscript code
+## Maestro produces BrightScript code
 
 There is no special runtime, or any other mechanism. The maestro-cli, simply takes your project and converts it to pure `.brs` and `.xml` files
 
-# Maestro-cli Command Line Tool
+## Maestro Command Line Tool
 
-Maestro is heavily inspired by angular, Adobe Flex, Xamarin, and other MVVM binding based frameworks. In this manner, maestro has as CLI tool, named [maestro-cli](https://github.com/georgejecook/maestro-cli), to assist in managing your maestro projects.
-We use the tool to compile our code (which is written in brighterscript), and to compile the xml bindings in our projects.
+Maestro is heavily inspired by Angular, Adobe Flex, Xamarin, and other MVVM binding based frameworks. In this manner, Maestro has as CLI tool, named [maestro-cli](https://github.com/georgejecook/maestro-cli), to assist in managing your Maestro projects.
+We use the tool to compile our code (which is written in BrighterScript), and to compile the xml bindings in our projects.
 
 The tool is used as part of your build chain. Once you have compiled all of the sources for your project, into a staging folder, you run the tool against the staging folder, which will manipulate your files to:
 
-- compile `.bs` brighterscript files into `.brs` brighterscript files
+- compile `.bs` BrighterScript files into `.brs` BrighterScript files
 - wire up bindings in your `.xml` view files
 
-Maestro-cli can be used from both the command line, and from javascript, for example as part of your gulp tool chain
+maestro-cli can be used from both the command line, and from JavaScript, for example as part of your gulp tool chain
 
-## using maestro-cli
+## Using the Command Line Tool
 Simply install the `maestro-cli-roku` npm package and use that to install the framework files, and run your tests.
 
 You can even use `maestro-cli` from your npm-compatible build tools, such as gulp.
 
-`maestro-cli` can download and install the maestro framework brighterscript (or brightscript) files for you, or generate classes
+`maestro-cli` can download and install the Maestro framework BrighterScript (or BrightScript) files for you, or generate classes
 
 Run `maestro-cli --help` for more documentation
 
-### installing maestro framework
+### Installing Maestro
 
    ```
    npm install maestro-cli-roku -g
@@ -86,7 +85,7 @@ Run `maestro-cli --help` for more documentation
 
 Create a config file, with a config for your project, as such:
 
-*project-maestro-config.json
+*project-Maestro-config.json
 
 ```
 {
@@ -112,12 +111,12 @@ Create a config file, with a config for your project, as such:
 and use the following command
 
 ```
-maestro-cli project-maestro-config.json
+maestro-cli project-Maestro-config.json
 ```
 
 ### From gulp
 
-This repo is full of samples that demonstrate how to compile your maestro projects. Here is some sample code 
+This repo is full of samples that demonstrate how to compile your Maestro projects. Here is some sample code 
 
 ```
 import { MaestroProjectProcessor, createMaestroConfig } from 'maestro-cli-roku';
@@ -146,9 +145,9 @@ exports.build = series(clean, createDirectories, compile);
 exports.prePublish = series(exports.build, addDevLogs)
 ```
 
-# View framework
+## View framework
 
-The View framework allows us to generate roku screens and components, which have a known lifecycle. If you've done much roku dev, you know how little of a framework exists for reasoning about a view's lifecycle events, such as being shown, getting focus, keys, etc. The Base view classes allow us to simply override abstract functions to seamlessly get lifecycle hooks for:
+The View framework allows us to generate roku screens and components, which have a known lifecycle. If you've done much roku dev, you know how little of a framework exists for reasoning about a view's lifecycle events, such as being shown, getting focus, keys, etc. The base view classes allow us to simply override abstract functions to seamlessly get lifecycle hooks for:
 
  - instantiation and destruction
  - adding to and removal from container views
@@ -160,32 +159,31 @@ In addition the view framework contains many base classes that can be used
 
 ## Mixins
 
-Maestro makes use of many different mixin classes, which handle different aspects of view managemnet (e.g. utils, focus, key handling), and then bundles these together in base classes (views and screens).
+Maestro makes use of many different mixin classes, which handle different aspects of view management (e.g. utils, focus, key handling), and then bundles these together in base classes (views and screens).
 
-Aggregate views for tab (i.e. iOS style TabController navigatoin) and stack (i.e. iOS style NavController navigation) are provided
+Aggregate views for tab (i.e. iOS style TabController navigation) and stack (i.e. iOS style NavController navigation) are provided
 
 ## Main views
 
-### BaseView
+### `BaseView`
 
-This is the base view responsible for mixing in functions for focus management, keyhandling and providing the main framework. It light enough for use as a component; but not recommended for use in rowlists/grids/other aggregate views which are expected to have a large amount of view items.
+This is the base view responsible for mixing in functions for focus management, keyhandling and providing the main framework. It light enough for use as a component; but not recommended for use in RowLists, Grids and other aggregate views which are expected to have a large amount of view items.
 
 This view is intended to be extended by Components, which in turn are aggregates of views; but not whole screens.
 
-
-#### BaseView fields
+#### `BaseView` fields
 
  - `isInitialized` - indicates if `initialize` has yet been called
  - `isShown`, true if the view is on screen
  - `name`, useful for logging
 
-#### BaseView methods
+#### `BaseView` methods
 
  - `initialize` - must be called to start the view machinery
 
-#### BaseView abstract methods
+#### `BaseView` abstract methods
 
-You can override these methods to safely drive your application behaviour
+You can override these methods to safely drive your application behavior
 
 - `applyStyle(styles, localizations, assets)` - will be called when the view is initialized, so it can apply required styles, etc
 - `initialize(args)` - called when the view has been initialized
@@ -195,7 +193,7 @@ You can override these methods to safely drive your application behaviour
  
 In addition you can override the methods in KeyMixin:
 
- -  `isAnyKeyPressLocked()` - returns true if any keypress is locked - defualt impl is to return the value of `m.isKeyPressLocked`
+ -  `isAnyKeyPressLocked()` - returns true if any keypress is locked - default impl is to return the value of `m.isKeyPressLocked`
  -  `isCapturingAnyKeyPress(key)`, return true if the key `key` is captured
 
 Override the following, to return true, if the applicable key is captured
@@ -208,7 +206,7 @@ Override the following, to return true, if the applicable key is captured
  -  `onKeyPressOption()`
  -  `onKeyPressOK()`
 
-Also, BaseView allows entry points for overriding abstract methods from `FocusMixin`
+Also, `BaseView` allows entry points for overriding abstract methods from `FocusMixin`
 
  - `onGainedFocus(isSelfFocused)`
  - `onLostFocus()`
@@ -219,13 +217,13 @@ The FocusMixin leverages the `FocusManager` node, to allow you to get accurate c
 
 #### FocusMixin methods
 
-- refer to the [api docuementation](https://georgejecook.github.io/maestro/module-FocusMixin.html)
+- refer to the [api documentation](https://georgejecook.github.io/Maestro/module-FocusMixin.html)
 - but in nutshell, use `setFocus(node)` and never use `node.setFocus(true)` again! :)
 
 #### FocusMixin callbacks
   You can override the following methods: 
 
- - `onGainedFocus` called when your control get's the focus -the `isSelfFocused` boolean parameter indicates if this control has the focus, or one of it's children has the focus.
+ - `onGainedFocus` called when your control gets the focus -the `isSelfFocused` boolean parameter indicates if this control has the focus, or one of it's children has the focus.
  - `onLostFocus` called when a control loses focus.
 
 #### using the FocusMixin/FocusManager
@@ -233,13 +231,13 @@ The FocusMixin leverages the `FocusManager` node, to allow you to get accurate c
 You must initialize the focusManger, by using the `initializeFocusManager`
   method, e.g. `initializeFocusManager(m.global)`. You will typically do this in an app controller.
 
-ALWAYS use the FocusMixin's `setFocus` method, so you have a predictable experience with focus management.
+ALWAYS use the `setFocus` method provided by the `FocusMixin`, so you have a predictable behavior when managing focus.
 
-#### If you extend BaseView
+#### If you extend `BaseView`
 
   - simply override the methods `onGainedFocus` and `onLostFocus`, they will be called at the appropriate times.
 
-#### If you do not extend BaseView
+#### If you do not extend `BaseView`
 If you do not extend BaseScreen, and want focus callbacks, then:
 
  - import the FocusMixin into your control
@@ -257,7 +255,7 @@ If you do not extend BaseScreen, and want focus callbacks, then:
 
 ### BaseScreen
 
-Extends Baseview and adds additional awareness for selections, loading state, if the user is reloading, and contains utility and application level functions. Application functions proxy main application activity such as playing a video, or showing a screen.
+Extends `BaseView` and adds additional awareness for selections, loading state, if the user is reloading, and contains utility and application level functions. Application functions proxy main application activity such as playing a video, or showing a screen.
 
 #### BaseScreen fields
 
@@ -269,7 +267,7 @@ Extends Baseview and adds additional awareness for selections, loading state, if
 
 #### BaseScreen functions
 
- - `getTopScreen` - can be used to ask this screen what it consider's it's top view. Useful if the screen in turn composes other screens (e.g. via nested NavControllers)
+ - `getTopScreen` - can be used to ask this screen what it considers it's top view. Useful if the screen in turn composes other screens (e.g. via nested NavControllers)
  - `push` - pushes passed in screen to the navController
  - `pop` - pops the current navController screen
  - `resetNavController` - resets the navController - passing in a screen or index, will reset to that screen, or back to that index
@@ -277,9 +275,9 @@ Extends Baseview and adds additional awareness for selections, loading state, if
  
 #### BaseScreen abstract functions
 
-BaseScreen provides the same lifecycle methods as Baseview; but also provides
+BaseScreen provides the same lifecycle methods as `BaseView`; but also provides
 
- - `getTopScreen ` - tempalte method used by `getTopScreen`
+ - `getTopScreen ` - template method used by `getTopScreen`
  - `baseScreenOnShow` - special hook used to overcome needing more `onShow` overrides (SceneGraph has a limit to super method calls)
  - `onUserChange` - called when the user changes, so the view can update itself with the latest data
 
@@ -293,7 +291,7 @@ Only one screen is ever visible at a time. A screen's lifecycle methods for focu
 
 ### TabController
 
-BaseAggregateView subclass which allows you to swtich various views. The tabController will display a screen which corresponds to the currently selected item. The screen is created lazily, unless it was specified using `addExistingView`
+BaseAggregateView subclass which allows you to switch various views. The tabController will display a screen which corresponds to the currently selected item. The screen is created lazily, unless it was specified using `addExistingView`
 
 #### TabController fields
 
@@ -322,7 +320,7 @@ NavController controls a stack of views stacked one up on the other. When a Base
  - `push` - pushes the passed in view onto the stack, and initializes it
  - `pop` - pops current view from the stack
  - `reset` - resets the stack
- - `resetToIndex` - resests the stack to the desired index
+ - `resetToIndex` - resets the stack to the desired index
 
 ## Component Lifecycle
 
@@ -353,27 +351,27 @@ Maestro is an MVVM (Model View View Model) framework. This pattern is, in the au
 The framework base classes also have additional benefits
  - They provide a focus mechanism, making it easy to unit test focus management
  - They provide key listening hooks, making it easy to unit test keyboard interactions
- - They provide hooks for the maestro view lifecycle methods, such as onShow, onFirstShow, onHide, etc
+ - They provide hooks for the Maestro view lifecycle methods, such as onShow, onFirstShow, onHide, etc
 
 ## Observables and ViewModels
 
-### BaseObservable
+### `BaseObservable`
 
 `BaseObservable` is the class that makes this observable behavior possible. It orchestrates it's responsibilities with the `BaseObservableMixin.bs` script
 
 ### BaseViewModel
 
-`BaseViewModel` is a specialized BaseObservable subclass. You will extend this class to create your bindings. These are referred to as _VMs_ or _ViewModels_, which is where Model View View Model pattern get's it's name.
+`BaseViewModel` is a specialized `BaseObservable` subclass. You will extend this class to create your bindings. These are referred to as _VMs_ or _ViewModels_, which is where Model View View Model pattern gets it's name.
 
 We use viewModels like any other class, invoking methods, and setting properties, with one caveat: We must call setField("fieldName", value), for fields we wish to update, so that we can notify any observers of changes
 
-## observers and bindings
+## Observers and bindings
 
 These are the 2 forms of observable interaction that the base classes provide:
 
- - observeField: this will call back a function, when an observable (i.e ViewModel) field is set. This is like `observeField` for brightscript nodes.
+ - observeField: this will call back a function, when an observable (i.e ViewModel) field is set. This is like `observeField` for BrightScript nodes.
  - bindField: this will bind the value of a field to a field on a node.
- - bindNodefield: this will bind the value of a field, to a field on an observer (i.e. ViewModel). The target field can also be a funcion, in which case it will be invoked with the bound fields' value.
+ - bindNodeField: this will bind the value of a field, to a field on an observer (i.e. ViewModel). The target field can also be a function, in which case it will be invoked with the bound fields' value.
 
 ### Binding and observing fields
 
@@ -399,9 +397,9 @@ function _initialize(args)
 end function
 ```
 
-Note that we use [brighterscript](https://github.com/TwitchBronBron/brighterscript/) in maestro, so the above calls `MOM.functionName` are _namespace invocations_ on the `MOM` _namespace_ and can just as well be written `MOM_functionName`
+Note that we use [BrighterScript](https://github.com/TwitchBronBron/BrighterScript/) in Maestro, so the above calls `MOM.functionName` are _namespace invocations_ on the `MOM` _namespace_ and can just as well be written `MOM_functionName`
 
-It is best to refer to the [API docs](https://georgejecook.github.io/maestro/index.html) for a full explanation; but it's worth noting that each binding supports various properties, which can be created via the `MOM.createBindingProperties` helper.
+It is best to refer to the [API docs](https://georgejecook.github.io/Maestro/index.html) for a full explanation; but it's worth noting that each binding supports various properties, which can be created via the `MOM.createBindingProperties` helper.
 
 ### Wiring up bindings in code is discouraged
 
@@ -417,11 +415,11 @@ All bindings in a given scope (i.e. view or task node) **must** be removed with 
 
 ## Overview
 
-Writing bindings and observers is cumbersome, and requires us to mix view and buisness logic, with boilerplate code.
+Writing bindings and observers is cumbersome, and requires us to mix view and business logic, with boilerplate code.
 
 Maestro allows us to follow MVVM pattern, which in turn means less time spent guessing how things end up in our view : We can see in the xml exactly where field values come from, and what field values will end up doing to our view models.
 
-Here is an example of some bindings in maestro:
+Here is an example of some bindings in Maestro:
 
 ```
   <!--One way binding from model.field to node: "oneWaySource"-->
@@ -459,29 +457,29 @@ a binding is as follows:
 
 `@{observable.name, arg1, arg2, ...}`   
 
- - `observable` is the name of the observable to target, in maestro, this is called `vm`. You should only have one per view; but in fact, any number of any named observables is supported.
+ - `observable` is the name of the observable to target, in Maestro, this is called `vm`. You should only have one per view; but in fact, any number of any named observables is supported.
  - `name`, the name of the field on the observable. If this is _oneWayTarget_ binding, then you can provide a function name, and even function `()` brackets
  - `args` are as follows:
    - `isSettingInitialValue=true` or `isSettingInitialValue=false` (optional - default to true), will set the value as soon as the binding is created
-   - `transform=functionName` (optoinal) where _functoinName_ of a function *which must be in scope* which transform ths bound field. See `MOM.transform_invertBoolean` for a sample implementation. This is good for allowing us to do view specific transformations without needing multiple vm fields,
+   - `transform=functionName` (optional) where _functionName_ of a function *which must be in scope* which transform ths bound field. See `MOM.transform_invertBoolean` for a sample implementation. This is good for allowing us to do view specific transformations without needing multiple vm fields,
    - `isFiringOnce=true` or `isFiringOnce=false` (optional) - will destroy the binding as soon as a value is set
    - `mode=oneWaySource` or `mode=oneWayTarget` or `mode=twoWay` (optional) this specifies the binding mode, it is however preferred you simply use alternate bracket types (`[], {} or ()`)
 
    
 
-# Brighterscript support
+# BrighterScript support
 
-Brighterscript is baked into the `maestro-cli-roku` package, and can be invoked from `maestro-cli`. Development on the official brighterscript project is underway, and once it has feature parity, we will use the official compiler inside of `maestro-cli`.
+BrighterScript is baked into the `maestro-cli-roku` package, and can be invoked from `maestro-cli`. Development on the official BrighterScript project is underway, and once it has feature parity, we will use the official compiler inside of `maestro-cli`.
 
-To get the most out of brighterscript, use the [brighterscript enabled vscode plugin](https://github.com/georgejecook/maestro/releases/download/0.7.0/brightscript-2.4.0-bs.vsix), which will give you language support.
+To get the most out of BrighterScript, use the [BrighterScript enabled vscode plugin](https://github.com/georgejecook/Maestro/releases/download/0.7.0/BrightScript-2.4.0-bs.vsix), which will give you language support.
 
-Maestro supports the following brighterscript features (with some limitations):
+Maestro supports the following BrighterScript features (with some limitations):
 
  - classes
  - namespaces
  - imports
 
-All of these features require that the file have the _brigherscript_ `.bs` extension
+All of these features require that the file have the _BrighterScript_ `.bs` extension
 
  ## namespaces
 
@@ -504,8 +502,8 @@ Only one namespace per file. All your functions in the file will become namespac
   - declare class fields with `public fieldName = value`
     - you can also use `as` keyword to declare the type: e.g `public name as string` or `public selectedItem as dynamic = invalid`
   - classes must be contained in `.bs` files to be compiled
-  - instantiate a class with `new CLASSNAME(args)` - note, classnames are NEVER affected by the namespace of the file they are in.
-  - be sure to use the `override` keyword, if you override a base class's function or sub. Note, if you are overriding, you can choose whether to call super or not with `m.super`, the compiler will log warnings if you don't call super; but these are verbose, and can be easily quitened by changing your logging level.
+  - instantiate a class with `new ClassName(args)` - note, classnames are NEVER affected by the namespace of the file they are in.
+  - be sure to use the `override` keyword, if you override a base class's function or sub. Note, if you are overriding, you can choose whether to call super or not with `m.super`, the compiler will log warnings if you don't call super; but these are verbose, and can be easily quietened by changing your logging level.
 
 ### limitations
 

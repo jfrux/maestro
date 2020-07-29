@@ -11,7 +11,7 @@ A development platform for building roku channels in brighterscript
 
 ## Links
  - **[Documentation](docs/index.md)**
- - **[API documentatio](https://georgejecook.github.io/maestro)**
+ - **[API Documentation](https://georgejecook.github.io/maestro)**
  - **[CHANGELOG](CHANGELOG.md)**
  - **[VSCode snippets](docs/vsCodeSnippets.md)**
  - [Roku dev forum topic](https://forums.roku.com/viewforum.php?f=34)
@@ -27,4 +27,4 @@ You might want to help! Get in touch via the slack group, or raise issues.
 
 ### Is Maestro actively maintained?
 
-I am actively invovled in Maestro's development, and have used the patterns contained in it since I started roku development. These are the most productive and maintainable patters and tools I've found so far, and I will continue to use them for my clients. The patterns that are used in maestro are further explorations and rewrites of similar patterns I have used in apps that have millions of installs, with extremely low crash %'s
+I am actively involved in Maestro's development, and have used the patterns contained in it since I started roku development. These are the most productive and maintainable patterns and tools I've found so far, and I will continue to use them for my clients. The patterns that are used in maestro are further explorations and rewrites of similar patterns I have used in apps that have millions of installs, with extremely low crash %'s

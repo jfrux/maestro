@@ -5,11 +5,11 @@ Maestro is a set of patterns and tools that fulfil the following goals:
 
  - Greatly reduce boilerplate
  - Increase testability
- - Make roku development safer, more fun, and easier to maintain
+ - Make Roku development safer, more fun, and easier to maintain
  - Allow for MVVM development, which is well suited for SceneGraph applications
- - Allow for development using [BrighterScript](https://github.com/TwitchBronBron/BrighterScript/)
+ - Allow for development using [BrighterScript](https://github.com/rokucommunity/brighterscript/)
  - Be opinionated
- - Produce projects which are highly navigable in a modern BrightScript-enabled IDE
+ - Produce projects which are highly navigable in a modern Brighterscript-enabled IDE
 
 ## What does Maestro comprise of
 
@@ -32,11 +32,11 @@ There is a lot to Maestro. You are welcome to use as much or as little as you li
 
 ## Getting started with Maestro
 
-TBD - in a nutshell, you'll use the maestro-cli to download and install the framework's source into your project
+TBD - in a nutshell, you'll use the maestro-cli to download and install the framework's source into your project.
 
 ## Maestro is an opinionated framework
 
-BrightScript looks like JavaScript but is *extremely* different. It does not have scope binding and also has a bizarre virtual-machine like division between threads and nodes, which introduces it's own special set of problems. This can confuse BrightScript developer's intending to engineer quality software, adhering to software engineering best practices.
+Brightscript looks like javascript; but is *extremely* different. It does not have scope binding, for starters, and also has a bizarre virtual-machine like division between threads and nodes, which introduces it's own special set of problems that can confuse brightscript developers working to engineer quality software while adhering to software engineering best practices.
 
 The patterns here have been thoroughly tested and solve many of the problems Roku developers face, while taking into account the quirks of BrightScript and SceneGraph.
 
@@ -45,7 +45,7 @@ We've found it desirable where possible to:
  - use pobo-classes (plain old BrightScript classes, i.e. aa-classes)
  - have mixin wrappers around callFunc methods wherever possible
  - have as little code in brs code-behind files (i.e. the brs files directly related to an xml view) as possible
- - place more code in easy to test-view model classes
+ - place more code in easy-to-test view model classes
 
 ## Maestro produces BrightScript code
 
@@ -58,7 +58,7 @@ We use the tool to compile our code (which is written in BrighterScript), and to
 
 The tool is used as part of your build chain. Once you have compiled all of the sources for your project, into a staging folder, you run the tool against the staging folder, which will manipulate your files to:
 
-- compile `.bs` BrighterScript files into `.brs` BrighterScript files
+- compile `.bs` BrighterScript files into `.brs` BrightScript files.
 - wire up bindings in your `.xml` view files
 
 maestro-cli can be used from both the command line, and from JavaScript, for example as part of your gulp tool chain
@@ -116,7 +116,7 @@ maestro-cli project-Maestro-config.json
 
 ### From gulp
 
-This repo is full of samples that demonstrate how to compile your Maestro projects. Here is some sample code 
+This repo is full of samples that demonstrate how to compile your maestro projects. Here is a basic example:
 
 ```
 import { MaestroProjectProcessor, createMaestroConfig } from 'maestro-cli-roku';
@@ -147,12 +147,12 @@ exports.prePublish = series(exports.build, addDevLogs)
 
 ## View framework
 
-The View framework allows us to generate roku screens and components, which have a known lifecycle. If you've done much roku dev, you know how little of a framework exists for reasoning about a view's lifecycle events, such as being shown, getting focus, keys, etc. The base view classes allow us to simply override abstract functions to seamlessly get lifecycle hooks for:
+The View framework allows us to generate Roku screens and components, which have a known lifecycle. If you've done much Roku dev, you know how little of a framework exists for reasoning about a view's lifecycle events, such as being shown, getting focus, keys, etc. The Base view classes allow us to simply override abstract functions to seamlessly get lifecycle hooks for:
 
  - instantiation and destruction
  - adding to and removal from container views
  - showing and hiding
- - keypresses
+ - key presses
  - focusing of views, or their children
 
 In addition the view framework contains many base classes that can be used
@@ -167,7 +167,7 @@ Aggregate views for tab (i.e. iOS style TabController navigation) and stack (i.e
 
 ### `BaseView`
 
-This is the base view responsible for mixing in functions for focus management, keyhandling and providing the main framework. It light enough for use as a component; but not recommended for use in RowLists, Grids and other aggregate views which are expected to have a large amount of view items.
+This is the base view responsible for mixing in functions for focus management, key handling and providing the main framework. It light enough for use as a component; but not recommended for use in RowLists, Grids and other aggregate views which are expected to have a large amount of view items.
 
 This view is intended to be extended by Components, which in turn are aggregates of views; but not whole screens.
 
@@ -188,12 +188,13 @@ You can override these methods to safely drive your application behavior
 - `applyStyle(styles, localizations, assets)` - will be called when the view is initialized, so it can apply required styles, etc
 - `initialize(args)` - called when the view has been initialized
 - `onFirstShow` - called the first time a view is shown
-- `onShow` - called when a view is shown - note a view cannot be shown if it is not initialized. This method will be called immediately for a visible view, when `initialize` is invoked
+- `onShow` - called when a view is shown 
+  - Note that a view cannot be shown if it is not initialized. This method will be called immediately for a visible view, when `initialize` is invoked
 - `onHide` - called when a view is hidden
  
 In addition you can override the methods in KeyMixin:
 
- -  `isAnyKeyPressLocked()` - returns true if any keypress is locked - default impl is to return the value of `m.isKeyPressLocked`
+ -  `isAnyKeyPressLocked()` - returns true if any key press is locked - the default implementation returns the value of `m.isKeyPressLocked`
  -  `isCapturingAnyKeyPress(key)`, return true if the key `key` is captured
 
 Override the following, to return true, if the applicable key is captured
@@ -267,7 +268,7 @@ Extends `BaseView` and adds additional awareness for selections, loading state, 
 
 #### BaseScreen functions
 
- - `getTopScreen` - can be used to ask this screen what it considers it's top view. Useful if the screen in turn composes other screens (e.g. via nested NavControllers)
+ - `getTopScreen` - can be used to ask this screen what it considers its top view. This is useful if the screen in turn composes other screens (e.g. via nested NavControllers)
  - `push` - pushes passed in screen to the navController
  - `pop` - pops the current navController screen
  - `resetNavController` - resets the navController - passing in a screen or index, will reset to that screen, or back to that index
@@ -337,13 +338,13 @@ To make development easier, and remove boilerplate, a lifecycle is provided, so 
  
 # MVVM and observable base classes
 
-Maestro is an MVVM (Model View View Model) framework. This pattern is, in the author's opinion, well suited to roku development: 
+Maestro is an MVVM (Model View View Model) framework. This pattern is, in the author's opinion, well suited to Roku development: 
 
  - It allows us to decouple our view logic from the view
  - The resulting view models are highly testable
   - Which means we can write our code using TDD, with rapid turnover
   - While building a regression suite
-  - And it's much faster to run a vm classes unit tests, than spin up the app and test our logic there
+  - And it's much faster to run a vm class's unit tests, than spin up the app and test our logic there
  - We can more easily stub and mock methods using this pattern 
  - The boilerplate for observables, and other tasks is encapsulated into unit tested framework methods
  - Readers of our code have far more indication as to what code is business logic, and what code is pure view management
@@ -502,8 +503,8 @@ Only one namespace per file. All your functions in the file will become namespac
   - declare class fields with `public fieldName = value`
     - you can also use `as` keyword to declare the type: e.g `public name as string` or `public selectedItem as dynamic = invalid`
   - classes must be contained in `.bs` files to be compiled
-  - instantiate a class with `new ClassName(args)` - note, classnames are NEVER affected by the namespace of the file they are in.
-  - be sure to use the `override` keyword, if you override a base class's function or sub. Note, if you are overriding, you can choose whether to call super or not with `m.super`, the compiler will log warnings if you don't call super; but these are verbose, and can be easily quietened by changing your logging level.
+  - instantiate a class with `new CLASSNAME(args)` - note, class names are NEVER affected by the namespace of the file they are in, at the time of writing. This is different to the official bsc compiler, and this behaviour will be changing very soon.
+  - be sure to use the `override` keyword, if you override a base class's function or sub. Note, if you are overriding, you can choose whether to call super or not with `m.super`, the compiler will log warnings if you don't call super; but these are verbose, and can be easily quieted by changing your logging level.
 
 ### limitations
 
